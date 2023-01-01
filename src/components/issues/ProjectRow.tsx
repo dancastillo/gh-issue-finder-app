@@ -2,18 +2,18 @@ import React from 'react'
 import Card from 'react-bootstrap/Card'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import { IssueProject } from '../types';
+import { IssueProject } from '../../types';
 
-const OrgaizationRow = ({ project }: { project: IssueProject | undefined }) => {
-  if (project && project.url) {
+const ProjectRow = ({ project, url }: { project: IssueProject | undefined, url: string }) => {
+  if (project && project.name) {
     return (
       <Row>
         <Col sm={{ offset: 1, span: 3 }}>
-        Orgaization: 
+        Repository: 
        </Col> 
        <Col>
-          <Card.Link href={project.url}>
-            {project.org}
+          <Card.Link href={url}>
+            {project.name}
           </Card.Link>
         </Col>
       </Row>
@@ -22,4 +22,4 @@ const OrgaizationRow = ({ project }: { project: IssueProject | undefined }) => {
   return null
 }
 
-export default OrgaizationRow
+export default ProjectRow

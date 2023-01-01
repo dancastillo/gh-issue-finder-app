@@ -2,7 +2,7 @@ import React from 'react'
 import Card from 'react-bootstrap/Card'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import { IssueObject } from '../types';
+import { IssueObject } from '../../types';
 import ProjectRow from './ProjectRow';
 import OrgaizationRow from './OrganizationRow';
 
