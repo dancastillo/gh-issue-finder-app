@@ -1,0 +1,23 @@
+.close {
+  display: inline-block;
+  margin-left: 25px;
+  opacity: 0.3;
+}
+.close:hover {
+  opacity: 1;
+}
+.close:before, .close:after {
+  display: inline-block;
+  /* position: absolute; */
+  /* left: 15px; */
+  content: ' ';
+  height: 16px;
+  width: 1px;
+  background-color: #333;
+}
+.close:before {
+  transform: rotate(45deg);
+}
+.close:after {
+  transform: rotate(-45deg);
+}

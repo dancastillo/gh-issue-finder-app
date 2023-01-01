@@ -22,3 +22,13 @@ export interface IssueObject {
   updated_at: string | Date
   labels: string[]
 }
+
+export interface Displays {
+  values: string[]
+  setValues: Function
+}
+
+export interface Inputs extends Displays {
+  placeholder: string
+  btnText: string
+}
