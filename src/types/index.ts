@@ -31,4 +31,19 @@ export interface Displays {
 export interface Inputs extends Displays {
   placeholder: string
   btnText: string
+  limit?: number
+}
+
+export interface GetIssuesProps {
+  projects: string[]
+  labels: string[]
+}
+
+export interface SearchProps {
+  setIssues: Function
+  setProps: Function
+}
+
+export interface IssuesProps {
+  issues: IssueObject[]
 }

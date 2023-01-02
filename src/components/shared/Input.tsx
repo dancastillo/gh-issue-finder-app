@@ -6,7 +6,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { Inputs } from '../../types'
 
-const LabelInput = ({ placeholder, btnText, values, setValues }: Inputs) => {
+const LabelInput = ({ placeholder, btnText, values, setValues, limit }: Inputs) => {
   const [value, setValue] = useState<string>('')
 
   const updateValue = (event: ChangeEvent<HTMLInputElement>) => {
@@ -14,12 +14,17 @@ const LabelInput = ({ placeholder, btnText, values, setValues }: Inputs) => {
   }
 
   const addValue = (event: MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault()
     if (value && value.trim() !== '') {
-    const updatedLabels = new Set([
-      ...values,
-      value,
-    ])
-      setValues(Array.from(updatedLabels))
+      if (limit && limit === 1) {
+        setValues([value])
+      } else {
+        const updatedLabels = new Set([
+          ...values,
+          value,
+        ])
+        setValues(Array.from(updatedLabels))
+      }
     }
     setTimeout(() => setValue(''))
   }
