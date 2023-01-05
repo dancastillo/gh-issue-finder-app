@@ -7,7 +7,7 @@ const InputAndDisplay = ({ placeholder, btnText, values, setValues, limit }: Inp
   return (
     <>
       <Input placeholder={placeholder} btnText={btnText} values={values} setValues={setValues} limit={limit}/>
-      <Display values={values} setValues={setValues} />
+      <Display values={values} setValues={setValues} limit={limit} />
     </>
   )
 }

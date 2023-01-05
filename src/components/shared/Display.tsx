@@ -4,10 +4,15 @@ import Col from 'react-bootstrap/Col'
 import uuid from 'react-uuid'
 import { Displays } from '../../types'
 
-const Display = ({ values, setValues}: Displays) => {
+const Display = ({ values, setValues, limit }: Displays) => {
   const removeDisplay = (remove: string) => {
     const updated = values.filter((value: string) => value !== remove)
     setValues(updated)
+  }
+  
+  if (limit === 1) {
+    // If limit is one we can just display in input box
+    return null
   }
 
   return (

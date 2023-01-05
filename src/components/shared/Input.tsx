@@ -10,24 +10,48 @@ const LabelInput = ({ placeholder, btnText, values, setValues, limit }: Inputs) 
   const [value, setValue] = useState<string>('')
 
   const updateValue = (event: ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value)
+    const project = event.target.value.trim()
+    if (project && project !== '') {
+      setValue(project)
+      // if limit is one we automatically set this
+      if (limit === 1) {
+        set(project)
+      }
+    }
   }
 
   const addValue = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
-    if (value && value.trim() !== '') {
-      if (limit && limit === 1) {
-        setValues([value])
-      } else {
-        const updatedLabels = new Set([
-          ...values,
-          value,
-        ])
-        setValues(Array.from(updatedLabels))
-      }
+    console.log('value', value)
+    if (value && value !== '') {
+      set(value)
+      setTimeout(() => setValue(''))
     }
-    setTimeout(() => setValue(''))
   }
+
+  const set = (value: string) => {
+    if (limit === 1) {
+      setValues([value])
+    } else {
+      const updatedLabels = new Set([
+        ...values,
+        value,
+      ])
+      setValues(Array.from(updatedLabels))
+    }
+  }
+
+  const getButton = () => {
+    if (limit === 1) {
+        return null
+    }
+    return (
+      <Button onClick={addValue}>
+        {btnText}
+      </Button>
+    )
+  }
+
   return (
     <Row className="pb-3">
       <Col md={{ span: 8, offset: 2 }}>
@@ -37,9 +61,7 @@ const LabelInput = ({ placeholder, btnText, values, setValues, limit }: Inputs) 
             onChange={updateValue}
             value={value}
           />
-          <Button onClick={addValue}>
-            {btnText}
-          </Button>
+          {getButton()}
         </InputGroup>
       </Col>
     </Row>

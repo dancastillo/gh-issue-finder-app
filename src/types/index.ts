@@ -26,6 +26,7 @@ export interface IssueObject {
 export interface Displays {
   values: string[]
   setValues: Function
+  limit?: number
 }
 
 export interface Inputs extends Displays {
