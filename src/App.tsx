@@ -5,7 +5,8 @@ import DefaultPage from './pages/DefaultPage';
 
 function App() {
   return (
-    <Container>
+    <Container className="pt-5">
+      <h3 className="text-center pb-3">Github Issue Finder</h3>
       <DefaultPage />
     </Container>
   )
