@@ -10,13 +10,11 @@ const LabelInput = ({ placeholder, btnText, values, setValues, limit }: Inputs) 
   const [value, setValue] = useState<string>('')
 
   const updateValue = (event: ChangeEvent<HTMLInputElement>) => {
-    const project = event.target.value.trim()
-    if (project && project !== '') {
-      setValue(project)
-      // if limit is one we automatically set this
-      if (limit === 1) {
-        set(project)
-      }
+    const project = event.target.value
+    setValue(project)
+    // if limit is one we automatically set this
+    if (project && project !== '' && limit === 1) {
+      set(project)
     }
   }
 
