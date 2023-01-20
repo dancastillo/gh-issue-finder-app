@@ -18,6 +18,5 @@ export const Config = (): { [key: string]: string } => {
     throw new Error(`Missing envs: ${missingEnvs}`)
   }
 
-  console.log(configs)
   return configs
 }

@@ -22,6 +22,9 @@ const constructQueryString = (orgs: string[], labels: string[]) => {
 
 export const getIssues = async (orgs: string[], labels: string[]) => {
   try {
+    if (!orgs || !orgs.length || !labels || !labels.length) {
+      return []
+    }
     const queryStr = constructQueryString(orgs, labels)
     const issues = await fetch(`${config.apiEndpoint}/api/find-issues?${queryStr}`)
     return await issues.json()

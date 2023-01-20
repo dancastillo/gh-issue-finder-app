@@ -5,17 +5,26 @@ import Issue from './Issue';
 
 const Issues = ({ issues }: IssuesProps) => {
   const getCount = () => {
-    if (issues.length) {
+    if (issues && issues.length) {
       return (
         <h5 className="text-center p-3">Number of issues: {issues.length}</h5>
       )
     }
     return null
   }
+
+  const hasIssues = () => {
+    if (issues && issues.length) {
+      return issues.map((issue: IssueObject) => (<Issue key={uuid()} issue={issue} />))
+    }
+
+    return null
+  }
+
   return (
     <>
       {getCount()}
-      {issues.map((issue: IssueObject) => (<Issue key={uuid()} issue={issue} />))}
+      {hasIssues()}
     </>
   )
 }

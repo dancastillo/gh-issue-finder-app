@@ -20,7 +20,6 @@ const LabelInput = ({ placeholder, btnText, values, setValues, limit }: Inputs) 
 
   const addValue = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
-    console.log('value', value)
     if (value && value !== '') {
       set(value)
       setTimeout(() => setValue(''))
