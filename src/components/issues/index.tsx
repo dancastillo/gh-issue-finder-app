@@ -12,10 +12,19 @@ const Issues = ({ issues }: IssuesProps) => {
     }
     return null
   }
+
+  const hasIssues = () => {
+    if (issues && issues.length) {
+      return issues.map((issue: IssueObject) => (<Issue key={uuid()} issue={issue} />))
+    }
+
+    return null
+  }
+
   return (
     <>
       {getCount()}
-      {issues && issues.length && issues.map((issue: IssueObject) => (<Issue key={uuid()} issue={issue} />))}
+      {hasIssues()}
     </>
   )
 }
