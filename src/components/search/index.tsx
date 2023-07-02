@@ -4,8 +4,16 @@ import { getIssues } from '../../api'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { SearchProps } from '../../types'
+import { Config } from '../../utils/config'
 
 const Search = ({ setProps, setIssues }: SearchProps) => {
+  const ghVars = () => {
+    const config = Config()
+    return {
+      labels: config?.githubIssuesLabels?.split(',').map((label: string) => label.replaceAll('_', ' ')),
+      repos: config?.githubRepos?.split(',') || [],
+    }
+  }
   const [projects, setProjects] = useState<string[]>([])
   const [labels, setLabels] = useState<string[]>([])
 
@@ -30,6 +38,7 @@ const Search = ({ setProps, setIssues }: SearchProps) => {
         btnText="Add"
         values={projects}
         setValues={setProjects}
+        choices={ghVars().repos}
         limit={1}
       />
       <InputAndDisplay
@@ -37,6 +46,8 @@ const Search = ({ setProps, setIssues }: SearchProps) => {
         btnText="Add"
         values={labels}
         setValues={setLabels}
+        choices={ghVars().labels}
+        applyChoice={true}
       />
       <Row className='pb-4'>
         <Col md={{ offset: 2, span: 8 }}>

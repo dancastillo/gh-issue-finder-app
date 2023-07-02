@@ -1,7 +1,8 @@
-
 export const Config = (): { [key: string]: string } => {
   const envs = {
     apiEndpoint: 'REACT_APP_API_ENDPOINT',
+    githubRepos: 'REACT_APP_REPOS',
+    githubIssuesLabels: 'REACT_APP_ISSUES',
   };
 
   let missingEnvs= '';

@@ -33,6 +33,8 @@ export interface Inputs extends Displays {
   placeholder: string
   btnText: string
   limit?: number
+  choices?: string[]
+  applyChoice?: boolean
 }
 
 export interface GetIssuesProps {

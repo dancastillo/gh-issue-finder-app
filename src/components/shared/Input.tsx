@@ -6,7 +6,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { Inputs } from '../../types'
 
-const LabelInput = ({ placeholder, btnText, values, setValues, limit }: Inputs) => {
+const LabelInput = ({ placeholder, btnText, values, setValues, limit, choices, applyChoice }: Inputs) => {
   const [value, setValue] = useState<string>('')
 
   const updateValue = (event: ChangeEvent<HTMLInputElement>) => {
@@ -18,12 +18,39 @@ const LabelInput = ({ placeholder, btnText, values, setValues, limit }: Inputs) 
     }
   }
 
+
+  const updateValueAsString = (str: string) => {
+    const project = str
+    setValue(project)
+    // if limit is one we automatically set this
+    if (project && project !== '' && limit === 1) {
+      set(project)
+    }
+    if (limit !== 1) {
+      set(str)
+      setTimeout(() => setValue(''))
+    }
+  }
+
   const addValue = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
     if (value && value !== '') {
       set(value)
       setTimeout(() => setValue(''))
     }
+  }
+
+  const getDefaults = (opts?: string[]) => {
+    if (!opts) return null
+    return (
+      <Row className="pt-3">
+        <Col md={{ span: 8, offset: 2 }}>
+          <ul className="button-list">
+            {opts.map((opt, i) => <li onClick={() => updateValueAsString(opt)} key={i}>{opt}</li>)}
+          </ul>
+        </Col>
+      </Row>
+    )
   }
 
   const set = (value: string) => {
@@ -61,6 +88,7 @@ const LabelInput = ({ placeholder, btnText, values, setValues, limit }: Inputs) 
           {getButton()}
         </InputGroup>
       </Col>
+      {getDefaults(choices)}
     </Row>
   )
 }
