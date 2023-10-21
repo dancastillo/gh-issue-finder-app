@@ -7,7 +7,11 @@ import ProjectRow from './ProjectRow';
 import OrgaizationRow from './OrganizationRow';
 
 const Issue = ({ issue }: { issue: IssueObject }) => {
-  const { url, title, comments, project, labels } = issue
+  const { url, title, comments, project, labels, updated_at } = issue
+  const formatDate = (date: string | Date) => {
+    const d = new Date(date)
+    return `${d.toLocaleDateString()} ${d.toLocaleTimeString()}`
+  }
   return (
     <Row className="pb-3">
       <Col md={{ span: 8, offset: 2 }}>
@@ -23,6 +27,10 @@ const Issue = ({ issue }: { issue: IssueObject }) => {
             <Card.Text>
               <i>Number of Comments: </i>
               {comments}
+            </Card.Text>
+            <Card.Text>
+              <i>Update at: </i>
+              {formatDate(updated_at)}
             </Card.Text>
           </Card.Body>
         </Card>

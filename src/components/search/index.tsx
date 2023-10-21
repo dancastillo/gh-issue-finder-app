@@ -3,7 +3,7 @@ import InputAndDisplay from './InputAndDisplay'
 import { getIssues } from '../../api'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import { SearchProps } from '../../types'
+import { IssueObject, SearchProps } from '../../types'
 import { Config } from '../../utils/config'
 
 const Search = ({ setProps, setIssues }: SearchProps) => {
@@ -28,6 +28,7 @@ const Search = ({ setProps, setIssues }: SearchProps) => {
     event.preventDefault()
     setIssues([])
     const { results } = await getIssues(projects, labels)
+    results.map(({ locked, state }: IssueObject) => !locked || state !== 'open')
     setIssues(results)
   }
 
